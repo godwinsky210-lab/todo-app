@@ -4,9 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="/main.js" defer></script>
-    <title>Users' Forum</title>
+    <title>Todo App</title>
   </head>
   <body>
-    <p id="user"></p>
+    <div>
+      <h2>Get Todo</h2>
+      <input
+        type="number"
+        id="todoGetInput"
+        value="4"
+        placeholder="todoGetInput"
+      />
+      <button id="todoGetButton">Get Todo</button>
+      <p id="todoGetParagraph"></p>
+    </div>
+    <div>
+      <h2>Post Todo</h2>
+      <input
+        type="number"
+        id="todoPostUserIdInput"
+        placeholder="todoPostUserIdInput"
+      />
+      <input type="checkbox" id="todoPostCompletedInput" />
+      <input
+        type="text"
+        id="todoPostTitleInput"
+        placeholder="todoPostTitleInput"
+      />
+      <button id="todoPostButton">Post Todo</button>
+      <p id="todoPostParagraph"></p>
+    </div>
   </body>
 </html>
