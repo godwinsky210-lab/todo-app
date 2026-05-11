@@ -8,8 +8,8 @@
     <link href="./css/tailwind.css" rel="stylesheet">
   </head>
   <body>
-    <div>
-      <h2>Get Todo</h2>
+    <div class="get">
+      <a> 1.</a><h2>Get Todo</h2>
       <input
         type="number"
         id="todoGetInput"
@@ -35,20 +35,27 @@
       <button id="todoPostButton">Post Todo</button>
       <p id="todoPostParagraph"></p>
     </div>
-    <div>
-      <h2>Patch Todo</h2>
+    <div class="patch">
+     <a> 3.</a> <h2>Patch Todo</h2>
 
       <input
         type="number"
         id="todoPatchUserIdInputElement"
-        placeholder="todoPatchUserIdInputElement"
+        placeholder="todoPatchId"
       />
-      <input type="checkbox" id="todoPatchCompletedInput" />
+      
+      <input
+        type="number"
+        id="todoPatchUserIdInputElement"
+        placeholder="todoPatchUserIdInput"
+      />
       <input
         type="text"
         id="todoPatchTitleInput"
         placeholder="todoPatchTitleInput"
       />
+            <input type="checkbox" id="todoPatchCompletedInput" />
+
       <button id="todoPatchButton">Patch Todo</button>
       <p id="todoPatchParagraph"></p>
     </div>
@@ -68,7 +75,8 @@
       <button id="todoPutButton">Put Todo</button>
       <p id="todoPutParagraph"></p>
     </div>
-    <div><h2>Delete Todo</h2>
+    <div class="delete">
+      <a> 5.</a><h2>Delete Todo</h2>
       <input
         type="number"
         id="todoDeleteIdInput"
