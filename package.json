@@ -1,0 +1,29 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "This is a Todo app we are building at AICIC.",
+  "keywords": [
+    "todo app",
+    "CRUD operations",
+    "AICIC Concepts"
+  ],
+  "homepage": "https://aicic-todo-app.vercel.app",
+  "bugs": {
+    "url": "https://github.com/MChiemelie/todo-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MChiemelie/todo-app.git"
+  },
+  "license": "MIT",
+  "author": "Chiemelie Melikam, Chukwuemeka Godwin, Chukwuebuka Ogugua",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./css/custom.css -o ./css/tailwind.css --watch"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0"
+  }
+}

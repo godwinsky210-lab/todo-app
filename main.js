@@ -92,6 +92,7 @@ todoDeleteButtonElement.addEventListener("click", async function deleteTodo() {
   const { title, userId, id, completed } = todo;
   console.log({ title, userId, id, completed });
   todoDeleteParagraphElement.textContent = `Hello👋🏿, I am User ${userId}. My todo is ${title} and id is ${id}. It has ${completed ? "" : "not"} been completed`;
+
 const todoPutUserIdInputElement = document.getElementById("todoPutUserIdInput");
 const todoPutCompletedInputElement = document.getElementById(
   "todoPutCompletedInput",
