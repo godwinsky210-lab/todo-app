@@ -119,12 +119,15 @@ const todoPatchCompletedInputElement = document.getElementById(
 const todoPatchTitleInputElement = document.getElementById(
   "todoPatchTitleInput",
 );
-todoPatchButtonElement.addEventListener("click", async function PatchTodo() {
-  const userId = todoPatchUserIdInputElement.value;
-  const completed = todoPatchCompletedInputElement.checked;
-  const title = todoPatchTitleInputElement.value;
+const todoPatchIdElement = document.getElementById("todoPatchIdElement");
 
-  const response = await fetch(`https://jsonplaceholder.typicode.com/todos/1`, {
+todoPatchButtonElement.addEventListener("click", async function PatchTodo() {
+  const userId = todoPatchUserIdInputElement.value || null;
+  const completed = todoPatchCompletedInputElement.checked;
+  const title = todoPatchTitleInputElement.value || null;
+  const id = todoPatchIdElement.value;
+
+  const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
     method: "PATCH",
     body: JSON.stringify({
       title,
@@ -138,10 +141,10 @@ todoPatchButtonElement.addEventListener("click", async function PatchTodo() {
   const todo = await response.json();
   const {
     title: todoTitle,
-    userId: newId,
-    id: todoUserId,
+    userId: todoUserId,
+    id: newId,
     completed: todoCompleted,
   } = todo;
   console.log({ todoTitle, todoUserId, newId, todoCompleted });
-  todoPatchParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My todo is ${todoTitle} and id is ${newId}. It has ${todoCompleted ? "" : "not"} been completed`;
+  todoPatchParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My todo is ${todoTitle}. It has ${todoCompleted ? "" : "not"} been completed`;
 });
