@@ -3,99 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="main.js" defer></script>
+    <script type="module" src="main.js" defer></script>
     <title>Todo App</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-    </style>
     <link href="./css/tailwind.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="get">
-      <a> 1.</a><h2>Get Todo</h2>
-      <input
-        type="number"
-        id="todoGetInput"
-        value="4"
-        placeholder="todoGetInput"
-      />
-    <div class="todo-form">
+    <!-- GET -->
+    <div>
       <h2>Get Todo</h2>
       <input type="number" id="todoGetInput" placeholder="todoGetInput" />
       <button id="todoGetButton">Get Todo</button>
       <p id="todoGetParagraph"></p>
     </div>
-    <div class="todo-form">
+
+    <!-- POST -->
+    <div>
       <h2>Post Todo</h2>
-      <input
-        type="number"
-        id="todoPostUserIdInput"
-        placeholder="todoPostUserIdInput"
-      />
+      <input type="number" id="todoPostUserIdInput" placeholder="todoPostUserIdInput" />
+      <input type="text" id="todoPostTitleInput" placeholder="todoPostTitleInput" />
       <input type="checkbox" id="todoPostCompletedInput" />
-      <input
-        type="text"
-        id="todoPostTitleInput"
-        placeholder="todoPostTitleInput"
-      />
       <button id="todoPostButton">Post Todo</button>
       <p id="todoPostParagraph"></p>
     </div>
-    <div class="patch">
-     <a> 3.</a> <h2>Patch Todo</h2>
 
-    <div class="todo-form">
-      <h2>Put Todo</h2>
-      <input
-        type="number"
-        id="todoPatchIdElement"
-        placeholder="todoPatchId"
-      />
-      
-      <input
-        type="number"
-        id="todoPatchUserIdInputElement"
-        placeholder="todoPatchUserIdInput here"
-      />
-      <input
-        type="text"
-        id="todoPatchTitleInput"
-        placeholder="todoPatchTitleInput"
-      />
-            <input type="checkbox" id="todoPatchCompletedInput" />
-
-      <button id="todoPatchButton">Patch Todo</button>
-      <p id="todoPatchParagraph"></p>
-    </div>
+    <!-- PUT -->
     <div>
       <h2>Put Todo</h2>
-        id="todoPutIdInput"
-        placeholder="todoPutIdInput"
-        required
-      />
-      <input
-        type="number"
-        id="todoPutUserIdInput"
-        placeholder="todoPutUserIdInput"
-      />
+      <input type="number" id="todoPutIdInput" placeholder="todoPutIdInput" required />
+      <input type="number" id="todoPutUserIdInput" placeholder="todoPutUserIdInput" />
+      <input type="text" id="todoPutTitleInput" placeholder="todoPutTitleInput" />
       <input type="checkbox" id="todoPutCompletedInput" />
-      <input
-        type="text"
-        id="todoPutTitleInput"
-        placeholder="todoPutTitleInput"
-      />
       <button id="todoPutButton">Put Todo</button>
       <p id="todoPutParagraph"></p>
     </div>
-    <div class="delete">
-      <a> 5.</a><h2>Delete Todo</h2>
-    <div class="todo-form">
+
+    <!-- PATCH -->
+    <div>
+      <h2>Patch Todo</h2>
+      <input type="number" id="todoPatchIdElement" placeholder="todoPatchId" />
+      <input type="number" id="todoPatchUserIdInputElement" placeholder="todoPatchUserIdInput here" />
+      <input type="text" id="todoPatchTitleInput" placeholder="todoPatchTitleInput" />
+      <input type="checkbox" id="todoPatchCompletedInput" />
+      <button id="todoPatchButton">Patch Todo</button>
+      <p id="todoPatchParagraph"></p>
+    </div>
+
+    <!-- DELETE -->
+    <div>
       <h2>Delete Todo</h2>
-      <input
-        type="number"
-        id="todoDeleteIdInput"
-        placeholder="todoDeleteIdInput"
-      />
+      <input type="number" id="todoDeleteIdInput" placeholder="todoDeleteIdInput" />
       <button id="todoDeleteButton">Delete Todo</button>
       <p id="todoDeleteParagraph"></p>
     </div>
