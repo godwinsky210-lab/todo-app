@@ -15,6 +15,15 @@ const todoPostParagraphElement = document.getElementById("todoPostParagraph");
 const todopatchTitleInputElement = document.getElementById(
   "todoPatchTitleInput",
 );
+const todoPutIdInputElement = document.getElementById("todoPutIdInput");
+const todoPutUserIdInputElement = document.getElementById("todoPutUserIdInput");
+const todoPutCompletedInputElement = document.getElementById(
+  "todoPutCompletedInput",
+);
+const todoPutTitleInputElement = document.getElementById("todoPutTitleInput");
+const todoPutButtonElement = document.getElementById("todoPutButton");
+const todoPutParagraphElement = document.getElementById("todoPutParagraph");
+
 const todoDeleteParagraphElement = document.getElementById(
   "todoDeleteParagraph",
 );
@@ -59,39 +68,44 @@ todoPostButtonElement.addEventListener("click", async function postTodo() {
   todoPostParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My todo is ${todoTitle} and id is ${todoId}. It has ${todoCompleted ? "" : "not"} been completed`;
 });
 
-const todoPutUserIdInputElement = document.getElementById("todoPutUserIdInput");
-const todoPutCompletedInputElement = document.getElementById(
-  "todoPutCompletedInput",
-);
-const todoPutTitleInputElement = document.getElementById("todoPutTitleInput");
-const todoPutButtonElement = document.getElementById("todoPutButton");
-const todoPutParagraphElement = document.getElementById("todoPutParagraph");
-
 todoPutButtonElement.addEventListener("click", async function putTodo() {
+  const todoId = todoPutIdInputElement.value;
   const userId = todoPutUserIdInputElement.value;
   const completed = todoPutCompletedInputElement.checked;
   const title = todoPutTitleInputElement.value;
 
-  const response = await fetch(`https://jsonplaceholder.typicode.com/todos/6`, {
-    method: "PUT",
-    body: JSON.stringify({
-      userId,
-      title,
-      completed,
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId}`,
+    {
+      method: "PUT",
+      body: JSON.stringify({
+        id: todoId,
+        title,
+        userId,
+        completed,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
     },
-  });
+  );
+
   const todo = await response.json();
   const {
     title: todoTitle,
     userId: todoUserId,
-    id: todoId,
+    id,
     completed: todoCompleted,
   } = todo;
-  console.log({ todoTitle, todoUserId, todoId, todoCompleted });
-  todoPutParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My todo is ${todoTitle} and id is ${todoId}. It has ${todoCompleted ? "" : "not"} been completed`;
+
+  console.log({
+    todoTitle,
+    todoUserId,
+    id,
+    todoCompleted,
+  });
+
+  todoPutParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My updated todo is ${todoTitle} and id is ${id}. It has ${todoCompleted ? "" : "not "}been completed`;
 });
 
 todoDeleteButtonElement.addEventListener("click", async function deleteTodo() {
