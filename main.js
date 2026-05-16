@@ -45,26 +45,27 @@ todoGetButtonElement.addEventListener("click", async function getTodo() {
 
     // const grade = calculateGrade(todoId);
 
-    todoGetParagraphElement.textContent = 'loading';
+    todoGetParagraphElement.textContent = "loading";
 
     const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
 
     if (!response.ok) {
       throw new Error("Todo not found");
     }
+    // if ( $todoid !== string(response.id)) {
+    //   throw new error ('todo id mismatch: expected ${todoId}, got ${response.id}');
+    // }
 
     const todo = await response.json();
-    const { title, userId, id, completed } = todo;
+    const { title, userId, id, completed } = todoId;
 
     todoGetParagraphElement.textContent =
       `Hello 👋🏿, I am User ${userId}. ` +
       `My todo is "${title}" and ID is ${id}. ` +
       `It has ${completed ? "" : "not "}been completed.`;
   } catch (error) {
-    console.error(error);
     todoGetParagraphElement.textContent = "An error occurred while fetching the todo.";
   } finally {
-    
   }
 });
 
@@ -126,36 +127,63 @@ todoPutButtonElement.addEventListener("click", async function putTodo() {
 
 // PATCH Request
 todoPatchButtonElement.addEventListener("click", async function PatchTodo() {
-  const userId = todoPatchUserIdInputElement.value || null;
-  const completed = todoPatchCompletedInputElement.checked;
-  const title = todoPatchTitleInputElement.value || null;
-  const id = todoPatchIdElement.value;
+  try {
+    const userId = todoPatchUserIdInputElement.value || null;
+    const completed = todoPatchCompletedInputElement.checked;
+    const title = todoPatchTitleInputElement.value || null;
+    const id = todoPatchIdElement.value;
+    if (!id || !userId || !title) {
+      todoPatchParagraphElement.textContent = "Please fill in all fields.";
+      return;
+    }
 
-  const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-    method: "PATCH",
-    body: JSON.stringify({
-      title,
-      userId,
-      completed,
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
-  const todo = await response.json();
-  const { title: todoTitle, userId: todoUserId, id: newId, completed: todoCompleted } = todo;
-  console.log({ todoTitle, todoUserId, newId, todoCompleted });
-  todoPatchParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My todo is ${todoTitle}. It has ${todoCompleted ? "" : "not"} been completed`;
+    todoPatchParagraphElement.textContent = "checking todo...";
+
+    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        title,
+        userId,
+        completed,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    const todo = await response.json();
+    if (!response.ok) throw new Error(`Todo with id ${id} not found`);
+    if (id !== String(todo.id)) throw new Error(`Todo ID mismatch: expected ${id}, got ${todo.id}`);
+
+    const { title: todoTitle, userId: todoUserId, id: newId, completed: todoCompleted } = todo;
+    console.log({ todoTitle, todoUserId, newId, todoCompleted });
+    todoPatchParagraphElement.textContent = `Hello👋🏿, I am User ${todoUserId}. My todo is ${todoTitle}. It has ${todoCompleted ? "" : "not"} been completed`;
+  } catch (error) {
+    todoPatchParagraphElement.textContent = `Error updating todo: ${error.message}`;
+  } finally {
+  }
 });
 
 // DELETE Request
 todoDeleteButtonElement.addEventListener("click", async function deleteTodo() {
-  const todoId = todoDeleteIdInputElement.value;
-  const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${todoId}`, {
-    method: "DELETE",
-  });
-  const todo = await response.json();
-  const { title, userId, id, completed } = todo;
-  console.log({ title, userId, id, completed });
-  todoDeleteParagraphElement.textContent = `Hello👋🏿, I am User ${userId}. My todo is ${title} and id is ${id}. It has ${completed ? "" : "not"} been completed`;
+  try {
+    const todoId = todoDeleteIdInputElement.value;
+
+    todoDeleteParagraphElement.textContent = "deleting todo ...";
+
+    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${todoId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Todo with id ${todoId} not found`);
+    }
+
+    const todo = await response.json();
+
+    const { title, userId, id, completed } = todo;
+    console.log({ title, userId, id, completed });
+    todoDeleteParagraphElement.textContent = `Hello👋🏿, I am User ${userId}. My todo is ${title} and id is ${id}. It has ${completed ? "" : "not"} been completed`;
+  } catch (error) {
+    todoDeleteParagraphElement.textContent = `${error} Todo with id ${todoId} not found.`;
+  } 
 });
